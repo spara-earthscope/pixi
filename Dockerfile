@@ -16,10 +16,10 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
     chmod +x install.sh &&\
     chown ${NB_USER}:${NB_USER} install.sh &&\
     apt-get update && apt-get install -y libsuitesparse-dev &&\
-    echo 'export PATH=$PATH:${HOME_DIR}/.pixi/bin' >> /etc/profile
+    echo 'export PATH=$PATH:/opt/bin/.pixi/bin' >> /etc/profile
 
 USER ${NB_USER}
-RUN ./install.sh --prefix ${HOME_DIR}/.pixi
+RUN ./install.sh --prefix /opt/bin/.pixi
 ENV PATH="${HOME_DIR}/.pixi/bin:${PATH}"
 WORKDIR /opt/es_sfgtools
 RUN pixi shell-hook -e full -s bash >> ${HOME_DIR}/.bashrc
