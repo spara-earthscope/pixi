@@ -20,9 +20,9 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
 
 USER ${NB_USER}
 RUN ./install.sh --prefix /opt/bin/.pixi
-ENV PATH="${HOME_DIR}/.pixi/bin:${PATH}"
+ENV PATH="/opt/bin/.pixi/bin:${PATH}"
 WORKDIR /opt/es_sfgtools
-RUN pixi shell-hook -e full -s bash >> ${HOME_DIR}/.bashrc
+RUN pixi shell-hook -e full -s bash >> /etc/profile
 RUN pixi run setup -e full
 WORKDIR ${HOME_DIR}
 
