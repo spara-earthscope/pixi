@@ -30,8 +30,9 @@ USER root
 
 # RUN pixi run setup -e full
 
+COPY entrypoint.sh /opt
 
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
 
 USER ${NB_USER}
 WORKDIR ${HOME_DIR}
