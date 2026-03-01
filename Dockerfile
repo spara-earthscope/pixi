@@ -10,14 +10,15 @@ ENV SFG_TOOLS=/opt/
 # Install pixi and es_sfgtools
 WORKDIR /opt
 USER root
-# RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfgtools.git &&\
-#     chown -R ${NB_USER}:${NB_USER} es_sfgtools &&\
-#     wget -qO- https://pixi.sh/install.sh > install.sh &&\
-#     chmod +x install.sh &&\
-#     chown ${NB_USER}:${NB_USER} install.sh &&\
-#     apt-get update && apt-get install -y libsuitesparse-dev &&\
-#     mkdir /opt/bin &&\
-#     echo 'export PATH=$PATH:/opt/bin/.pixi/bin' >> /etc/skel/.bashrc
+RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfgtools.git &&\
+    chown -R ${NB_USER}:${NB_USER} es_sfgtools &&\
+    wget -qO- https://pixi.sh/install.sh > install.sh &&\
+    chmod +x install.sh &&\
+    chown ${NB_USER}:${NB_USER} install.sh &&\
+    apt-get update && apt-get install -y libsuitesparse-dev &&\
+    mkdir /opt/bin &&\
+    echo 'export PATH=$PATH:/opt/bin/.pixi/bin' >> /etc/skel/.bashrc &&\
+    chown ${NB_USER}:${NB_USER} /etc/skel/.bashrc
 
 # USER ${NB_USER}
 # RUN ./install.sh --prefix /opt/bin/.pixi/bin
