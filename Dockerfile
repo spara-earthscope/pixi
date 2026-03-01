@@ -22,7 +22,11 @@ USER ${NB_USER}
 RUN ./install.sh --prefix /opt/bin/.pixi
 ENV PATH="/opt/bin/.pixi/bin:${PATH}"
 WORKDIR /opt/es_sfgtools
+
+USER root
 RUN pixi shell-hook -e full -s bash >> /etc/skel/.bashrc
+
+USER ${NB_USER}
 RUN pixi run setup -e full
 WORKDIR ${HOME_DIR}
 
