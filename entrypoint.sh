@@ -1,8 +1,7 @@
 #!/bin/sh
 
-
-./install.sh --prefix /opt/bin/.pixi/bin
-PATH="/opt/bin/.pixi/bin:${PATH}"
+./install.sh | PIXI_BIN_DIR=/opt/ PIXI_NO_PATH_UPDATE=1 bash
+PATH="/opt/.pixi/bin:${PATH}"
 cd /opt/es_sfgtools
 pixi shell-hook -e full -s bash >> /etc/skel/.bashrc
 pixi run setup -e full
