@@ -17,8 +17,8 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
     chown ${NB_USER}:${NB_USER} install.sh &&\
     apt-get update && apt-get install -y libsuitesparse-dev &&\
     touch /etc/skel/.bashrc &&\
-    chown ${NB_USER}:${NB_USER} /etc/skel/.bashrc &&\
     echo 'export PATH=$PATH:/opt/.pixi/bin' >> /etc/skel/.bashrc &&\
+    chown ${NB_USER}:${NB_USER} /etc/skel/.bashrc &&\
     COPY entrypoint.sh /opt
     
 # USER ${NB_USER}
