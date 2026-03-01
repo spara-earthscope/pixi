@@ -16,12 +16,11 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
     chmod +x install.sh &&\
     chown ${NB_USER}:${NB_USER} install.sh &&\
     apt-get update && apt-get install -y libsuitesparse-dev &&\
-    mkdir /opt/bin &&\
     touch /etc/skel/.bashrc &&\
     chown ${NB_USER}:${NB_USER} /etc/skel/.bashrc &&\
-    echo 'export PATH=$PATH:/opt/bin/.pixi/bin' >> /etc/skel/.bashrc &&\
+    echo 'export PATH=$PATH:/opt/.pixi/bin' >> /etc/skel/.bashrc &&\
+    COPY entrypoint.sh /opt
     
-
 # USER ${NB_USER}
 # RUN ./install.sh --prefix /opt/bin/.pixi/bin
 # ENV PATH="/opt/bin/.pixi/bin:${PATH}"
@@ -33,7 +32,7 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
 
 # RUN pixi run setup -e full
 
-COPY entrypoint.sh /opt
+
 
 # ENTRYPOINT ["/entrypoint.sh"]
 
