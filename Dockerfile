@@ -16,10 +16,11 @@ RUN git clone --single-branch --branch main https://github.com/EarthScope/es_sfg
     chmod +x install.sh &&\
     chown ${NB_USER}:${NB_USER} install.sh &&\
     apt-get update && apt-get install -y libsuitesparse-dev &&\
+    mkdir /opt/bin &&\
     echo 'export PATH=$PATH:/opt/bin/.pixi/bin' >> /etc/skel/.bashrc
 
 USER ${NB_USER}
-RUN ./install.sh --prefix /opt/bin/.pixi
+RUN ./install.sh --prefix /opt/bin/.pixi/bin
 ENV PATH="/opt/bin/.pixi/bin:${PATH}"
 WORKDIR /opt/es_sfgtools
 
